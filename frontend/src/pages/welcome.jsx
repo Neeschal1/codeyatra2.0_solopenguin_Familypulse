@@ -32,7 +32,7 @@ const Welcome = () => {
           <h1 className="text-4xl font-extrabold text-[#9747ff] leading-tight tracking-tight mb-3">
             FamilyPulse
           </h1>
-          <div className="w-12 h-1 bg-gradient-to-r from-[#9747ff] to-[#7d1ef9] rounded-full mx-auto mb-4" />
+          <div className="w-12 h-1 bg-linear-to-r from-[#9747ff] to-[#7d1ef9] rounded-full mx-auto mb-4" />
           <p className="text-gray-500 text-base leading-relaxed">
             Stay connected and care for the people<br />who matter most.
           </p>
