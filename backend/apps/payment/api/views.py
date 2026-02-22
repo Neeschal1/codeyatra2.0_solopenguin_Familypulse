@@ -9,11 +9,10 @@ import os
 from ...users.models import User
 import stripe
 
-# stripe.api_key = Config.STRIPE_SECRET_KEY
 stripe.api_key = os.environ.get('STRIPE_SECRET_KEY')
 
 class PaymentSerializersView(APIView):
-    # permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated]
 
     def post(self, request):
         paid = PaymentSerializers(data=request.data)
