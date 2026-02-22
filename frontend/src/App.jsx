@@ -7,17 +7,19 @@ import Signup from './pages/signup';
 import Home from './pages/home';
 import Welcome from './pages/welcome';
 
+
 function App() {
 
   return (
     <Router>
       <div className="flex w-full h-screen justify-center items-center flex-1 bg-[#EEF3F9]">
         <Routes>
-          <Route path="/" element={<Welcome />}/>
-          <Route path="/login" element={<Login />}/>
-          <Route path="/signup" element={<Signup />}/>
-          <Route path="/home" element={<Home />}/>
+          <Route path="/" element={<Welcome />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/home" element={<Home />} />
         </Routes>
+        <welcome />
       </div>
     </Router>
   )
