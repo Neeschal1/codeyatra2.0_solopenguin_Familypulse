@@ -5,15 +5,26 @@ import uuid
 from decimal import Decimal
 
 
-class ServiceType(models.Model):
-    name = models.CharField(max_length=100)
-    fee = models.DecimalField(max_digits=10, decimal_places=2)
+class VisitService:
+    VITALS_CHECK = "VITALS_CHECK"
+    FULL_BODY_CHECK = "FULL_BODY_CHECK"
+    FOLLOW_UP = "FOLLOW_UP"
 
-    def __str__(self):
-        return f"{self.name} (${self.fee})"
+    CHOICES = [
+        (VITALS_CHECK, "Vitals Check"),
+        (FULL_BODY_CHECK, "Full Body Check"),
+        (FOLLOW_UP, "Follow-up Consultation"),
+    ]
+
+SERVICE_PRICING = {
+    VisitService.VITALS_CHECK: Decimal("10.00"),
+    VisitService.FULL_BODY_CHECK: Decimal("25.00"),
+    VisitService.FOLLOW_UP: Decimal("15.00"),
+}
 
 
 class Visit(models.Model):
+
     class Status(models.TextChoices):
         SCHEDULED = "SCHEDULED"
         ASSIGNED = "ASSIGNED"
