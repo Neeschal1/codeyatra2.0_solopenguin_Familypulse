@@ -1,13 +1,16 @@
 import React, { useState } from "react";
+import login from "../api/handlelogin";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const navigation = useNavigate()
+
   const handleLogin = (e) => {
     e.preventDefault();
-    console.log(email, password);
-    // Add authentication logic here
+    login(email, password, navigation)
   };
 
   return (
