@@ -41,6 +41,11 @@ class NurseCompleteVisitView(generics.UpdateAPIView):
     serializer_class = VisitSerializer
     permission_classes = [IsAuthenticated, IsNurse]
 
+    @extend_schema(
+        request=None,
+        responses=VisitSerializer,
+        description="Nurse starts a visit (ignore is_paid/status for testing)"
+    )
     def get_queryset(self):
         # For testing, ignore is_paid/status
         return Visit.objects.filter(nurse=self.request.user)

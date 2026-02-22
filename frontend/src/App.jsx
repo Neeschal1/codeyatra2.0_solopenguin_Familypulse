@@ -1,6 +1,10 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
+<<<<<<< HEAD
+=======
+
+>>>>>>> 131bc95d8888b0cbf53aec3d39db0c469ac1d6c1
 import Login from "./pages/login";
 import Signup from "./pages/signup";
 import Home from "./pages/home";
