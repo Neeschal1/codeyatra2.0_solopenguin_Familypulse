@@ -25,7 +25,7 @@ const Welcome = () => {
 
 
       <div className="text-center mb-10">
-        <h1 className="text-5xl font-bold text-blue-600 mb-4">
+        <h1 className="text-5xl font-bold text-[#9747ff] mb-4"> 
           Welcome to FamilyPulse
         </h1>
         <p className="text-gray-600 text-lg">
@@ -35,11 +35,11 @@ const Welcome = () => {
 
       <div className="w-full max-w-sm space-y-4">
 
-        <button onClick={handleLogin} className="w-full border-2 border-blue-600 text-blue-600 py-3 rounded-lg text-lg font-semibold transition hover:bg-black duration-400 hover:text-white">
+        <button onClick={handleLogin} className="w-full border-2 border-[#9747ff] text-[#9747ff] py-3 rounded-lg text-lg font-semibold transition hover:bg-[#7d1ef9] duration-400 hover:text-white">
           Login
         </button>
 
-        <button onClick={handleSignup} className="w-full bg-blue-600 text-white py-3 rounded-lg text-lg font-semibold border hover:bg-blue-800 duration-400 border-gray-300  transition">
+        <button onClick={handleSignup} className="w-full bg-[#9747ff] text-white py-3 rounded-lg text-lg font-semibold border hover:bg-[#7d1ef9] duration-400 border-gray-300  transition">
           Sign Up
         </button>
 
