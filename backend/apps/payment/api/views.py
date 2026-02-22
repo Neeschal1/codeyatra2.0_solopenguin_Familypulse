@@ -1,68 +1,86 @@
-from .serializers import PaymentSerializers
+from rest_framework import status
 from rest_framework.views import APIView
-from env_config import Config
-from rest_framework.permissions import IsAuthenticated, AllowAny
-from ..models.entities import Payments
-import uuid
 from rest_framework.response import Response
-import os
-from ...users.models import User
-import stripe
+from .serializers import PaymentSerializer
+from ..models.entities import Payments
+from ...visits.models import Visit
+import stripe, os, uuid
+from rest_framework.permissions import IsAuthenticated, AllowAny
+from drf_spectacular.utils import extend_schema
 
 stripe.api_key = os.environ.get('STRIPE_SECRET_KEY')
 
-class PaymentSerializersView(APIView):
+
+
+class PaymentCreateView(APIView):
     permission_classes = [IsAuthenticated]
 
+    @extend_schema(
+        request=PaymentSerializer,
+        responses={
+            200: {
+                "type": "object",
+                "properties": {
+                    "payment_id": {"type": "string"},
+                    "checkout_url": {"type": "string", "format": "uri"}
+                }
+            }
+        },
+        description="Create a payment for a visit and get Stripe checkout URL"
+    )
     def post(self, request):
-        paid = PaymentSerializers(data=request.data)
-        paid.is_valid(raise_exception=True)
+        serializer = PaymentSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
 
-        email = paid.validated_data["username"]
-        Name = paid.validated_data["paid_to"]
-        Description = paid.validated_data["description"]
-        Amount = paid.validated_data["amount"]
-        
+        visit_id = serializer.validated_data["visit_id"]
+        paid_to = serializer.validated_data["paid_to"]
+        description = serializer.validated_data["description"]
+        amount = serializer.validated_data["amount"]
+
         try:
-            lineitem = [
-                {
-                    "quantity": 1,
-                    "price_data": {
-                        "currency": "usd",
-                        "unit_amount": int(Amount * 100),
-                        "product_data": {
-                            "name": Name,
-                            "description": Description
+            visit = Visit.objects.get(id=visit_id)
+        except Visit.DoesNotExist:
+            return Response({"error": "Visit not found"}, status=404)
+
+        try:
+            checkout_session = stripe.checkout.Session.create(
+                payment_method_types=['card'],
+                line_items=[{
+                    'price_data': {
+                        'currency': 'usd',
+                        'unit_amount': int(amount * 100),
+                        'product_data': {
+                            'name': paid_to,
+                            'description': description,
                         },
                     },
-                }
-            ]
-            checkout_session = stripe.checkout.Session.create(
-                line_items=lineitem,
+                    'quantity': 1,
+                }],
                 mode='payment',
-                success_url="https://www.pinterest.com/pin/316729786314156192/",
-                cancel_url="https://www.pinterest.com/pin/1125968651884142/"
+                success_url="https://example.com/success",
+                cancel_url="https://example.com/cancel",
+                metadata={'payment_id': str(uuid.uuid4())}
             )
         except Exception as e:
-            return Response({"Message":"Exception Occured!", "Issue":str(e)})
-        
-        try:
-            user = User.objects.get(email=email)
-        except User.DoesNotExist:
-            return Response({"error": "User not found"}, status=400)
+            return Response({"error": str(e)}, status=500)
 
-        
-        Payments.objects.create(
-            username=user,
-            pay_id=str(uuid.uuid4()),
-            paid_to=Name,
-            description=Description,
-            amount=Amount,
-            status="Succeed"
+        # Create Payment record and mark visit as paid immediately
+        payment = Payments.objects.create(
+            user=request.user,
+            visit=visit,
+            paid_to=paid_to,
+            description=description,
+            amount=amount,
+            status='succeeded',
         )
 
-        return Response({"Message":"Payment Created.", "Buyer's Detail": {
-            "Username": str(user.id),
-            "Description": Description,
-            "Amount": Amount,
-            }, "URL":checkout_session.url})
+        Visit.objects.filter(id=visit.id).update(is_paid=True)
+
+        visit.refresh_from_db()
+
+        return Response({
+            "payment_id": str(payment.id),
+            "visit_id": str(visit.id),
+            "is_paid": visit.is_paid,
+            "checkout_url": checkout_session.url
+        }, status=status.HTTP_201_CREATED)
