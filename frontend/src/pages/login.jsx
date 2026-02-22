@@ -1,73 +1,79 @@
-<<<<<<< HEAD
-import React from 'react'
+import React, { useState } from "react";
 
 const Login = () => {
-  return (
-    <div>
-        <h1>Please login in order to continue</h1>
-    </div>
-  )
-}
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-export default Login
-=======
-import React from "react";
+  const handleLogin = (e) => {
+    e.preventDefault();
+    console.log(email, password);
+    // Add authentication logic here
+  };
 
-const Login = () => {
   return (
-    <div className="flex items-center justify-center bg-gray-100 px-4 py-10">
-      
-      <div className="w-full max-w-xl bg-white shadow-xl rounded-3xl p-10">
+    <div className="flex items-center justify-center bg-gray-100 px-4 py-10 min-h-screen">
+      <div className="w-full max-w-lg bg-white shadow-xl rounded-3xl overflow-hidden">
         
-        <h2 className="text-3xl font-bold text-center text-gray-800 mb-8">
-          Login
-        </h2>
+        {/* Header */}
+        <div className="bg-[#9747ff] py-6 px-8 text-center">
+          <h2 className="text-3xl font-bold text-white">Login</h2>
+          <p className="text-purple-100 mt-1 text-sm">
+            Enter your credentials to continue
+          </p>
+        </div>
 
-        <form className="space-y-6">
+        {/* Form */}
+        <form onSubmit={handleLogin} className="space-y-4 p-8">
           
           <div>
-            <label className="block text-gray-600 mb-2 text-sm font-medium">
+            <label className="block text-gray-700 mb-1 text-sm font-medium">
               Email
             </label>
             <input
               type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               placeholder="Enter your email"
-              className="w-full px-4 py-3 border border-gray-300 text-black rounded-xl focus:outline-none focus:ring-2 focus:ring-[#9747ff] focus:border-[#9747ff] transition"
+              autoComplete="email"
+              className="w-full px-4 py-2.5 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#9747ff] focus:border-[#9747ff] text-gray-800 transition"
             />
           </div>
 
           <div>
-            <label className="block text-gray-600 mb-2 text-sm font-medium">
+            <label className="block text-gray-700 mb-1 text-sm font-medium">
               Password
             </label>
             <input
               type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               placeholder="Enter your password"
-              className="w-full px-4 py-3 border border-gray-300 text-black rounded-xl focus:outline-none focus:ring-2 focus:ring-[#9747ff] focus:border-[#9747ff] transition"
+              autoComplete="current-password"
+              className="w-full px-4 py-2.5 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#9747ff] focus:border-[#9747ff] text-gray-800 transition"
             />
           </div>
 
           <button
             type="submit"
-            className="w-full bg-[#9747ff] text-white py-3 rounded-xl text-lg font-semibold hover:bg-[#7d1ef9] transition shadow-md hover:shadow-lg"
+            className="w-full bg-[#9747ff] text-white py-3 rounded-xl text-lg font-semibold hover:bg-[#7d1ef9] shadow-lg transition duration-200 hover:scale-[1.02]"
           >
             Login
           </button>
-
         </form>
 
-        <div className="mt-8 text-center text-sm text-gray-600">
+        {/* Footer */}
+        <div className="py-4 px-8 text-center border-t border-gray-200 text-sm text-gray-600">
           Don’t have an account?{" "}
-          <a href="http://localhost:5174/signup" className="text-[#8f4de6] font-semibold hover:underline">
-            Sign up
+          <a
+            href="http://localhost:5174/signup"
+            className="text-[#9747ff] font-semibold hover:underline"
+          >
+            Sign Up
           </a>
         </div>
-
       </div>
-
     </div>
   );
 };
 
 export default Login;
->>>>>>> origin/main
