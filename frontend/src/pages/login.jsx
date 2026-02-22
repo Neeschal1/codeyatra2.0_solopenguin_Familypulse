@@ -54,7 +54,7 @@ const Login = () => {
 
         <div className="mt-6 text-center text-sm text-gray-600">
           Don’t have an account?{" "}
-          <a href="http://localhost:5174/dep_user" className="text-[#8f4de6] font-semibold hover:underline">
+          <a href="http://localhost:5174/signup" className="text-[#8f4de6] font-semibold hover:underline">
             Sign up
           </a>
        

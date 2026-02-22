@@ -1,13 +1,14 @@
 import React from "react";
 
-const Login = () => {
+
+const User = () => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
       
       <div className="w-full max-w-md bg-white shadow-xl rounded-2xl p-8">
         
         <h2 className="text-3xl font-bold text-center text-gray-800 mb-6">
-          Sign Up
+          User Sign Up
         </h2>
 
         <form className="space-y-2">
@@ -52,7 +53,7 @@ const Login = () => {
             <input
               type="password"
               placeholder="Enter your password"
-              className="w-full px-4 py-1 border text-black rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-1 border  text-black rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
 
@@ -63,26 +64,18 @@ const Login = () => {
             <input
               type="password"
               placeholder="Confirm your password"
-              className="w-full px-4 py-1 border text-black rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-1 border  text-black rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
 
-          {/* User Type Dropdown */}
-          <div>
-            <label className="block text-gray-600 mb-2 text-sm">
-              User Type
-            </label>
-            <select
-              className="w-full px-4 py-2 border text-black rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-              defaultValue=""
+          {/* <div className="text-right">
+            <a
+              href="#"
+              className="text-sm text-blue-600 hover:underline"
             >
-              <option value="" disabled>
-                Select User Type
-              </option>
-              <option value="dependent">Dependent</option>
-              <option value="user">User</option>
-            </select>
-          </div>
+              Forgot password?
+            </a>
+          </div> */}
 
           <button
             type="submit"
@@ -106,4 +99,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default User;
