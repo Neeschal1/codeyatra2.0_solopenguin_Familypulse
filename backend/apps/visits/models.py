@@ -2,6 +2,16 @@ from django.db import models
 from django.conf import settings
 from ..dependents.models import Dependent
 import uuid
+from decimal import Decimal
+
+
+class ServiceType(models.Model):
+    name = models.CharField(max_length=100)
+    fee = models.DecimalField(max_digits=10, decimal_places=2)
+
+    def __str__(self):
+        return f"{self.name} (${self.fee})"
+
 
 class Visit(models.Model):
     class Status(models.TextChoices):
@@ -20,3 +30,7 @@ class Visit(models.Model):
     report = models.TextField(blank=True, null=True)  #PDF??
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    # pAyment
+    fee = models.DecimalField(max_digits=10, decimal_places=2, default=Decimal('0.00'))
+    is_paid = models.BooleanField(default=False)
+    # payment = models.OneToOneField('Payment', null=True, blank=True, on_delete=models.SET_NULL)
