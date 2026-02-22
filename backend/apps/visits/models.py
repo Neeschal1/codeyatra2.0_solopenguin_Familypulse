@@ -45,3 +45,12 @@ class Visit(models.Model):
     fee = models.DecimalField(max_digits=10, decimal_places=2, default=Decimal('0.00'))
     is_paid = models.BooleanField(default=False)
     # payment = models.OneToOneField('Payment', null=True, blank=True, on_delete=models.SET_NULL)
+    service = models.CharField(
+        max_length=30,
+        choices=VisitService.CHOICES
+    )
+
+    def save(self, *args, **kwargs):
+        if self.service:
+            self.fee = SERVICE_PRICING.get(self.service, Decimal("0.00"))
+        super().save(*args, **kwargs)
