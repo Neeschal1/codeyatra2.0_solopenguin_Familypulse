@@ -1,17 +1,25 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import ReactDOM from "react-dom/client";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import './App.css'
+import Login from './pages/login';
+import Signup from './pages/signup';
+import Home from './pages/home';
+import Welcome from './pages/welcome';
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
-    <>
-      <h1 class="text-3xl font-bold underline">
-    Hello world!
-  </h1>
-    </>
+    <Router>
+      <div className="flex w-full h-screen justify-center items-center flex-1 bg-[#EEF3F9]">
+        <Routes>
+          <Route path="/" element={<Welcome />}/>
+          <Route path="/login" element={<Login />}/>
+          <Route path="/signup" element={<Signup />}/>
+          <Route path="/home" element={<Home />}/>
+        </Routes>
+      </div>
+    </Router>
   )
 }
 
