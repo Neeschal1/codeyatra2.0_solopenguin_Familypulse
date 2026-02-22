@@ -11,7 +11,7 @@ const Welcome = () => {
 
 
   const handleSignup = () => {
-    navigation("/signup")
+    navigation("/dep_user")
   }
 
   return (
@@ -35,7 +35,7 @@ const Welcome = () => {
 
       <div className="w-full max-w-sm space-y-4">
 
-        <button onClick={handleLogin} className="w-full border-2 border-[#9747ff] text-[#9747ff] py-3 rounded-lg text-lg font-semibold transition hover:bg-[#7d1ef9] duration-400 hover:text-white">
+        <button onClick={handleLogin} className="w-full border-2 border-[#9747ff] text-[#9747ff] py-3 rounded-lg text-lg font-semibold transition hover:bg-[#9747ff] duration-400 hover:text-white">
           Login
         </button>
 

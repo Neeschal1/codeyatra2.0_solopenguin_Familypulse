@@ -6,6 +6,8 @@ import Login from './pages/login';
 import Signup from './pages/signup';
 import Home from './pages/home';
 import Welcome from './pages/welcome';
+import Dep_User from './pages/dep_user';
+// import Navbar from './pages/navbar';
 
 
 function App() {
@@ -17,8 +19,10 @@ function App() {
           <Route path="/" element={<Welcome />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/dep_user" element={<Dep_User />} />
           <Route path="/home" element={<Home />} />
         </Routes>
+        {/* <Navbar /> */}
         <welcome />
       </div>
     </Router>

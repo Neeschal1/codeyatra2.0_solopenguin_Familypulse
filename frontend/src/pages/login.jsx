@@ -19,7 +19,7 @@ const Login = () => {
             <input
               type="email"
               placeholder="Enter your email"
-              className="w-full px-4 py-2 border text-black rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-1 border text-black rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
 
@@ -30,18 +30,18 @@ const Login = () => {
             <input
               type="password"
               placeholder="Enter your password"
-              className="w-full px-4 py-2 border  text-black rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-1 border  text-black rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
 
-          <div className="text-right">
+          {/* <div className="text-right">
             <a
               href="#"
               className="text-sm text-[#9747ff] hover:underline"
             >
               Forgot password?
             </a>
-          </div>
+          </div> */}
 
           <button
             type="submit"
@@ -54,9 +54,10 @@ const Login = () => {
 
         <div className="mt-6 text-center text-sm text-gray-600">
           Don’t have an account?{" "}
-          <a href="#" className="text-[#8f4de6] font-semibold hover:underline">
+          <a href="http://localhost:5174/dep_user" className="text-[#8f4de6] font-semibold hover:underline">
             Sign up
           </a>
+       
         </div>
 
       </div>
