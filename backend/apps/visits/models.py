@@ -32,55 +32,16 @@ class Visit(models.Model):
         COMPLETED = "COMPLETED"
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-
-    dependent = models.ForeignKey(
-        Dependent,
-        on_delete=models.CASCADE,
-        related_name="visits"
-    )
-
-    scheduled_by = models.ForeignKey(
-        settings.AUTH_USER_MODEL,
-        on_delete=models.CASCADE,
-        related_name="scheduled_visits"
-    )
-
-    nurse = models.ForeignKey(
-        settings.AUTH_USER_MODEL,
-        on_delete=models.SET_NULL,
-        null=True,
-        blank=True,
-        related_name="assigned_visits"
-    )
-
-    service = models.CharField(
-        max_length=30,
-        choices=VisitService.CHOICES
-    )
-
-    fee = models.DecimalField(
-        max_digits=10,
-        decimal_places=2,
-        default=Decimal("0.00")
-    )
-
-    is_paid = models.BooleanField(default=False)
-
-    status = models.CharField(
-        max_length=20,
-        choices=Status.choices,
-        default=Status.SCHEDULED
-    )
-
+    dependent = models.ForeignKey(Dependent, on_delete=models.CASCADE, related_name="visits")
+    scheduled_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="scheduled_visits")
+    nurse = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True, blank=True, related_name="assigned_visits")
+    status = models.CharField(max_length=20, choices=Status.choices, default=Status.SCHEDULED)
     scheduled_at = models.DateTimeField()
     completed_at = models.DateTimeField(null=True, blank=True)
-    report = models.TextField(null=True, blank=True)
-
+    report = models.TextField(blank=True, null=True)  #PDF??
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-
-    def save(self, *args, **kwargs):
-        # freeze price at creation time
-        if not self.fee:
-            self.fee = SERVICE_PRICING[self.service]
-        super().save(*args, **kwargs)
+    # pAyment
+    fee = models.DecimalField(max_digits=10, decimal_places=2, default=Decimal('0.00'))
+    is_paid = models.BooleanField(default=False)
+    # payment = models.OneToOneField('Payment', null=True, blank=True, on_delete=models.SET_NULL)
