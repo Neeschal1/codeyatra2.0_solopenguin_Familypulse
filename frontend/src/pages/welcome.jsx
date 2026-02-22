@@ -5,15 +5,15 @@ import { useNavigate } from "react-router-dom";
 const Welcome = () => {
   const navigation = useNavigate();
 
-  const handleLogin = () => navigation("/login");
+  const handleLogin = () => navigation("/signup/login");
   const handleSignup = () => navigation("/signup");
 
   return (
     <div className="min-h-screen flex flex-col justify-center items-center relative overflow-hidden bg-gray-100 px-6">
 
       {/* Background blobs */}
-      <div className="absolute top-[-80px] left-[-80px] w-72 h-72 bg-[#9747ff] opacity-5 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-[-60px] right-[-60px] w-96 h-96 bg-[#7d1ef9] opacity-5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute -top-20 -left-20 w-72 h-72 bg-[#9747ff] opacity-5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute -bottom-15 -right-15 w-96 h-96 bg-[#7d1ef9] opacity-5 rounded-full blur-3xl pointer-events-none" />
 
       {/* Card */}
       <div className="relative z-10 w-full max-w-md bg-white rounded-3xl shadow-xl shadow-[#9747ff]/10 border border-gray-200 px-10 py-12 flex flex-col items-center">

@@ -9,14 +9,14 @@ const Login = () => {
   const [confirmpassword, setConfirmPassword] = useState("");
   const [role, setRole] = useState("");
 
-  const navigation = useNavigate()
+  const navigation = useNavigate();
 
   const handleSignup = (e) => {
-     e.preventDefault();
-     if (password == confirmpassword){
-      signup(name, email, password, role, navigation)
-     }
-  }
+    e.preventDefault();
+    if (password == confirmpassword) {
+      signup(password, name, email, role, navigation);
+    }
+  };
 
   return (
     <div className="flex items-center justify-center bg-gray-100 w-2xl  px-4">
@@ -90,16 +90,14 @@ const Login = () => {
               User Type
             </label>
             <select
-  value={role} // controlled component
-  onChange={(e) => setRole(e.target.value)}
-  className="w-full px-4 py-2.5 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#9747ff] focus:border-[#9747ff] text-gray-800 transition"
->
-  <option value="" disabled>
-    Select User Type
-  </option>
-  <option value="dependent">Dependent</option>
-  <option value="user">User</option>
-</select>
+              value={role} // controlled component
+              onChange={(e) => setRole(e.target.value)}
+              className="w-full px-4 py-2.5 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#9747ff] focus:border-[#9747ff] text-gray-800 transition"
+            >
+              <option value="NURSE">Staff/Nurse</option>
+              <option value="USER">User</option>
+              <option value="ADMIN">Admin</option>
+            </select>
           </div>
 
           <button

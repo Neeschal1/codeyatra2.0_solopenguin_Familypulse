@@ -13,8 +13,8 @@ function App() {
       <div className="flex w-full h-screen justify-center items-center bg-[#EEF3F9]">
         <Routes>
           <Route path="/" element={<Welcome />} />
-          <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/signup/login" element={<Login />} />
           <Route path="/home" element={<Home />} />
           <Route path="/dashboard" element={<Dashboard />} />
         </Routes>
