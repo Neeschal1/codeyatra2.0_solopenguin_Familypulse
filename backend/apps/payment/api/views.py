@@ -57,8 +57,8 @@ class PaymentCreateView(APIView):
                     'quantity': 1,
                 }],
                 mode='payment',
-                success_url="https://example.com/success",
-                cancel_url="https://example.com/cancel",
+                success_url="https://www.pinterest.com/pin/316729786314156192/",
+                cancel_url="https://www.pinterest.com/pin/1125968651884142/",
                 metadata={'payment_id': str(uuid.uuid4())}
             )
         except Exception as e:
