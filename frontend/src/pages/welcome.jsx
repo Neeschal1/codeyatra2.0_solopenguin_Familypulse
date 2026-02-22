@@ -12,8 +12,8 @@ const Welcome = () => {
     <div className="min-h-screen flex flex-col justify-center items-center relative overflow-hidden bg-gray-100 px-6">
 
       {/* Subtle background decorative blobs */}
-      <div className="absolute top-[-80px] left-[-80px] w-72 h-72 bg-[#9747ff] opacity-5 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-[-60px] right-[-60px] w-96 h-96 bg-[#7d1ef9] opacity-5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute -top-20 -left-20 w-72 h-72 bg-[#9747ff] opacity-5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute -bottom-60 -right-15 w-96 h-96 bg-[#7d1ef9] opacity-5 rounded-full blur-3xl pointer-events-none" />
 
       {/* Card */}
       <div className="relative z-10 w-full max-w-md bg-white rounded-3xl shadow-xl shadow-[#9747ff]/10 border border-gray-200 px-10 py-12 flex flex-col items-center">
@@ -42,7 +42,7 @@ const Welcome = () => {
         <div className="w-full space-y-3">
           <button
             onClick={handleSignup}
-            className="w-full bg-gradient-to-r from-[#9747ff] to-[#7d1ef9] text-white py-3.5 rounded-xl text-base font-semibold shadow-lg shadow-[#9747ff]/30 hover:shadow-[#9747ff]/50 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
+            className="w-full bg-linear-to-r from-[#9747ff] to-[#7d1ef9] text-white py-3.5 rounded-xl text-base font-semibold shadow-lg shadow-[#9747ff]/30 hover:shadow-[#9747ff]/50 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
           >
             Sign Up
           </button>

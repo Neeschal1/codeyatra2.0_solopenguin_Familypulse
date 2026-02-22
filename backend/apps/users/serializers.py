@@ -8,7 +8,7 @@ class UserSignupSerializer(serializers.ModelSerializer):
     # role = serializers.ChoiceField(choices=ROLE_CHOICES, default="USER")
     class Meta:
         model = User
-        fields = ["email", "password", "role"]
+        fields = ["email", "password", "role", 'name']
 
     def create(self, validated_data):
         password = validated_data.pop("password")
