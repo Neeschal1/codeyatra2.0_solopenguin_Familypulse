@@ -70,7 +70,7 @@ const AdminDashboard = ({ setView }) => {
           <div className="space-y-3">
             {nurses.slice(0, 5).map((n) => (
               <div key={n.id} className="flex items-center gap-3 p-3 rounded-xl bg-gray-50 hover:bg-[#f5f0ff] transition-colors">
-                <div className="w-9 h-9 rounded-full bg-gradient-to-br from-[#9747ff] to-[#7d1ef9] flex items-center justify-center text-white text-sm font-bold">
+                <div className="w-9 h-9 rounded-full bg-linear-to-br from-[#9747ff] to-[#7d1ef9] flex items-center justify-center text-white text-sm font-bold">
                   {n.email?.[0]?.toUpperCase()}
                 </div>
                 <div>
