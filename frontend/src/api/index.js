@@ -115,3 +115,36 @@ export const createPayment = (data) =>
     headers: getHeaders(),
     body: JSON.stringify(data),
   }).then(handle);
+
+
+// Reports
+export const getReports = () =>
+  fetch(`${BASE_URL}/reports/`, { headers: getHeaders() }).then(handle);
+
+export const createReport = (data) =>
+  fetch(`${BASE_URL}/reports/`, {
+    method: "POST",
+    headers: getHeaders(),
+    body: JSON.stringify(data),
+  }).then(handle);
+
+export const updateReport = (id, data) =>
+  fetch(`${BASE_URL}/reports/${id}/`, {
+    method: "PUT",
+    headers: getHeaders(),
+    body: JSON.stringify(data),
+  }).then(handle);
+
+export const deleteReport = (id) =>
+  fetch(`${BASE_URL}/reports/${id}/`, {
+    method: "DELETE",
+    headers: getHeaders(),
+  }).then(handle);
+
+// AI
+export const getAISummary = (report_id) =>
+  fetch(`${BASE_URL}/ai/create/`, {
+    method: "POST",
+    headers: getHeaders(),
+    body: JSON.stringify({ report_id }),
+  }).then(handle);  

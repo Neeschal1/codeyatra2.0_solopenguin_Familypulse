@@ -6,14 +6,17 @@ const navItems = {
     { label: "Dashboard", icon: "🏠", view: "dashboard" },
     { label: "Dependents", icon: "👨‍👩‍👧", view: "dependents" },
     { label: "Visits", icon: "🏥", view: "visits" },
+    { label: "Reports", icon: "📄", view: "reports" },
   ],
   NURSE: [
     { label: "My Visits", icon: "🩺", view: "nurse_visits" },
+    { label: "Reports", icon: "📄", view: "nurse_reports" },
   ],
   ADMIN: [
     { label: "Dashboard", icon: "📊", view: "admin_dashboard" },
     { label: "Nurses", icon: "👩‍⚕️", view: "admin_nurses" },
     { label: "Visits", icon: "📋", view: "admin_visits" },
+    { label: "Reports", icon: "📄", view: "admin_reports" },
   ],
 };
 

@@ -13,6 +13,8 @@ import AdminDashboard from "./pages/admin/AdminDashboard";
 import AdminNurses from "./pages/admin/AdminNurses";
 import AdminVisits from "./pages/admin/AdminVisits";
 import { Spinner } from "./components/UI";
+import NurseReports from "./pages/nurse/NurseReports";
+import Reports from "./pages/shared/Reports";
 import MapComponent from "./components/map";
 
 const defaultView = {
@@ -42,10 +44,13 @@ const AppShell = () => {
       case "dashboard": return <UserDashboard setView={setView} />;
       case "dependents": return <Dependents />;
       case "visits": return <Visits />;
+      case "reports": return <Reports />;
       case "nurse_visits": return <NurseVisits />;
+      case "nurse_reports": return <NurseReports />;
       case "admin_dashboard": return <AdminDashboard setView={setView} />;
       case "admin_nurses": return <AdminNurses />;
       case "admin_visits": return <AdminVisits />;
+      case "admin_reports": return <Reports />;
       default: return <UserDashboard setView={setView} />;
     }
   };

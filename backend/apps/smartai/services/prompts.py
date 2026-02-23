@@ -6,10 +6,10 @@ load_dotenv()
 def summarize_report_prompt(report_context):
     # Generates a plain-language summary of a medical report.
     prompt = f"""
-        You are a compassionate medical assistant.
+You are a compassionate medical assistant. Dont introduce yourself. This summary is not for the subject patient, its for their family / friends.
 
-        Summarize the medical report below in plain, easy-to-understand language for patients or family members.
-        Include key findings, what they mean, and any notes from the doctor or nurse.
+Summarize the medical report below in plain, easy-to-understand language for patient's or family members.
+Include key findings, what they mean, and any notes from the doctor or nurse.
 
         Medical Report: {report_context}
 
