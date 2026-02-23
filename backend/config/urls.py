@@ -9,7 +9,6 @@ from drf_spectacular.views import (
 
 urlpatterns = [
     path('payments/', include('apps.payment.api.urls')),
-    path('reports/', include('apps.reports.api.urls')),
 
     path('admin/', admin.site.urls),
 
@@ -17,6 +16,7 @@ urlpatterns = [
     path("api/dependents/", include("apps.dependents.urls")),
     path("api/", include("apps.visits.urls")),
 
+    path("api/", include("apps.reports.api.urls")),
 
     path("api/schema/", SpectacularAPIView.as_view(), name="schema"),
     path(

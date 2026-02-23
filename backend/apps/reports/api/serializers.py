@@ -1,8 +1,18 @@
-from ..models.entities import Report
 from rest_framework import serializers
+from ..models.entities import Report
 
-class ReportSerializers(serializers.ModelSerializer):
+class MedicalReportSerializer(serializers.ModelSerializer):
     class Meta:
         model = Report
-        fields = '__all__'
-        # extra_kwargs = 
+        fields = [
+            "id",
+            "visit",
+            "body_weight",
+            "haemoglobin",
+            "platelets",
+            "blood_pressure",
+            "heartbeat",
+            "notes",
+            "created_at",
+        ]
+        read_only_fields = ["id", "created_at"]

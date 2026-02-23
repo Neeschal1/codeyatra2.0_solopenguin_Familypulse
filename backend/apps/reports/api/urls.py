@@ -1,6 +1,7 @@
-from django.urls import path
-from .views import *
+from rest_framework.routers import DefaultRouter
+from .views import MedicalReportViewSet
 
-urlpatterns = [
-    path('create/', ReportSerializersView.as_view(), name='ReportSerializersView')
-]
+router = DefaultRouter()
+router.register("reports", MedicalReportViewSet, basename="reports")
+
+urlpatterns = router.urls
