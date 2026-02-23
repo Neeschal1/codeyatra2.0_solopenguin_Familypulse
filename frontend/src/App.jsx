@@ -13,6 +13,7 @@ import AdminDashboard from "./pages/admin/AdminDashboard";
 import AdminNurses from "./pages/admin/AdminNurses";
 import AdminVisits from "./pages/admin/AdminVisits";
 import { Spinner } from "./components/UI";
+import MapComponent from "./components/map";
 
 const defaultView = {
   USER: "dashboard",
@@ -75,6 +76,7 @@ const Routes_ = () => (
     <Route path="/login" element={<PublicRoute><Login /></PublicRoute>} />
     <Route path="/signup" element={<PublicRoute><SignUp /></PublicRoute>} />
     <Route path="/app" element={<AppShell />} />
+    <Route path="/map" element={<MapComponent />} />
     <Route path="*" element={<Navigate to="/" replace />} />
   </Routes>
 );
