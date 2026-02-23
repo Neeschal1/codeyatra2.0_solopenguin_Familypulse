@@ -38,7 +38,6 @@ class Visit(models.Model):
     status = models.CharField(max_length=20, choices=Status.choices, default=Status.SCHEDULED)
     scheduled_at = models.DateTimeField()
     completed_at = models.DateTimeField(null=True, blank=True)
-    report = models.TextField(blank=True, null=True)  #PDF??
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     # pAyment
