@@ -18,6 +18,8 @@ urlpatterns = [
 
     path("api/", include("apps.reports.api.urls")),
 
+    path('api/ai/', include('apps.smartai.api.urls')),
+
     path("api/schema/", SpectacularAPIView.as_view(), name="schema"),
     path(
         "api/docs/",

@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'apps.notifications',
     'apps.payment',
     'apps.reports',
+    'apps.smartai'
 
 ]
 
