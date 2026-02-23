@@ -34,7 +34,8 @@ INSTALLED_APPS = [
     'apps.visits',
     'apps.vitals',
     'apps.notifications',
-    'apps.payment'
+    'apps.payment',
+    'apps.reports',
 
 ]
 
