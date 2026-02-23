@@ -28,7 +28,7 @@ const AdminNurses = () => {
           {nurses.map((n) => (
             <Card key={n.id} className="p-6">
               <div className="flex items-center gap-4 mb-3">
-                <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#9747ff] to-[#7d1ef9] flex items-center justify-center text-white text-lg font-bold shadow-lg shadow-[#9747ff]/20">
+                <div className="w-12 h-12 rounded-2xl bg-linear-to-br from-[#9747ff] to-[#7d1ef9] flex items-center justify-center text-white text-lg font-bold shadow-lg shadow-[#9747ff]/20">
                   {n.email?.[0]?.toUpperCase()}
                 </div>
                 <div>

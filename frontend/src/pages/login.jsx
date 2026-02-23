@@ -1,79 +1,63 @@
 import React, { useState } from "react";
-import login from "../api/handlelogin";
 import { useNavigate } from "react-router-dom";
+import { login, getMe } from "../api";
+import { useAuth } from "../context/AuthContext";
+import { Input, Button, Alert } from "../components/UI";
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+  const { loginUser } = useAuth();
+  const [form, setForm] = useState({ email: "", password: "" });
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  const navigation = useNavigate()
-
-  const handleLogin = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    login(email, password, navigation)
+    setError("");
+    setLoading(true);
+    try {
+      const tokens = await login(form.email, form.password);
+      const userData = await getMe(tokens.access);
+      loginUser(tokens, userData);
+      navigate("/app");
+    } catch (err) {
+      setError(err.message || "Invalid credentials");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
-    <div className="flex items-center justify-center bg-gray-100 px-4 py-10 min-h-screen">
-      <div className="w-full max-w-lg bg-white shadow-xl rounded-3xl overflow-hidden">
-        
-        {/* Header */}
-        <div className="bg-[#9747ff] py-6 px-8 text-center">
-          <h2 className="text-3xl font-bold text-white">Login</h2>
-          <p className="text-purple-100 mt-1 text-sm">
-            Enter your credentials to continue
-          </p>
+    <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4 relative overflow-hidden">
+      <div className="absolute top-[-80px] left-[-80px] w-72 h-72 bg-[#9747ff] opacity-5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-[-60px] right-[-60px] w-96 h-96 bg-[#7d1ef9] opacity-5 rounded-full blur-3xl pointer-events-none" />
+
+      <div className="relative z-10 w-full max-w-md bg-white rounded-3xl shadow-xl shadow-[#9747ff]/10 border border-gray-200 px-10 py-12">
+        <div className="text-center mb-8">
+          <h2 className="text-4xl font-extrabold text-[#9747ff] tracking-tight mb-3">Welcome Back</h2>
+          <div className="w-12 h-1 bg-linear-to-r from-[#9747ff] to-[#7d1ef9] rounded-full mx-auto mb-3" />
+          <p className="text-gray-400 text-sm">Log in to your FamilyPulse account</p>
         </div>
 
-        {/* Form */}
-        <form onSubmit={handleLogin} className="space-y-4 p-8">
-          
-          <div>
-            <label className="block text-gray-700 mb-1 text-sm font-medium">
-              Email
-            </label>
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="Enter your email"
-              autoComplete="email"
-              className="w-full px-4 py-2.5 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#9747ff] focus:border-[#9747ff] text-gray-800 transition"
-            />
-          </div>
-
-          <div>
-            <label className="block text-gray-700 mb-1 text-sm font-medium">
-              Password
-            </label>
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="Enter your password"
-              autoComplete="current-password"
-              className="w-full px-4 py-2.5 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#9747ff] focus:border-[#9747ff] text-gray-800 transition"
-            />
-          </div>
-
+        <form onSubmit={handleSubmit} className="space-y-5">
+          <Alert message={error} />
+          <Input label="Email" type="email" placeholder="Enter your email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} required />
+          <Input label="Password" type="password" placeholder="Enter your password" value={form.password} onChange={(e) => setForm({ ...form, password: e.target.value })} required />
           <button
             type="submit"
-            className="w-full bg-[#9747ff] text-white py-3 rounded-xl text-lg font-semibold hover:bg-[#7d1ef9] shadow-lg transition duration-200 hover:scale-[1.02]"
+            disabled={loading}
+            className="w-full bg-linear-to-r from-[#9747ff] to-[#7d1ef9] text-white py-3.5 rounded-xl text-base font-semibold shadow-lg shadow-[#9747ff]/30 hover:shadow-[#9747ff]/50 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 disabled:opacity-60 disabled:cursor-not-allowed mt-1"
           >
-            Login
+            {loading ? "Logging in..." : "Login"}
           </button>
         </form>
 
-        {/* Footer */}
-        <div className="py-4 px-8 text-center border-t border-gray-200 text-sm text-gray-600">
-          Don’t have an account?{" "}
-          <a
-            href="http://localhost:5174/signup"
-            className="text-[#9747ff] font-semibold hover:underline"
-          >
-            Sign Up
-          </a>
-        </div>
+        <p className="mt-8 text-center text-sm text-gray-400">
+          Don't have an account?{" "}
+          <button onClick={() => navigate("/signup")} className="text-[#9747ff] font-semibold hover:underline bg-transparent border-none cursor-pointer p-0">
+            Sign up
+          </button>
+        </p>
       </div>
     </div>
   );
