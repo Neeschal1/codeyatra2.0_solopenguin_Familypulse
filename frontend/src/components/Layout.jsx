@@ -32,7 +32,7 @@ const Layout = ({ currentView, setView, children }) => {
         {/* Brand */}
         <div className="px-6 py-7 border-b border-gray-100">
           <h1 className="text-2xl font-extrabold text-[#9747ff] tracking-tight">FamilyPulse</h1>
-          <div className="w-8 h-0.5 bg-gradient-to-r from-[#9747ff] to-[#7d1ef9] rounded-full mt-1" />
+          <div className="w-8 h-0.5 bg-linear-to-r from-[#9747ff] to-[#7d1ef9] rounded-full mt-1" />
           <p className="text-xs text-gray-400 mt-2 capitalize">{user?.role?.toLowerCase()} portal</p>
         </div>
 
@@ -44,7 +44,7 @@ const Layout = ({ currentView, setView, children }) => {
               onClick={() => { setView(item.view); setSidebarOpen(false); }}
               className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200
                 ${currentView === item.view
-                  ? "bg-gradient-to-r from-[#9747ff] to-[#7d1ef9] text-white shadow-lg shadow-[#9747ff]/30"
+                  ? "bg-linear-to-r from-[#9747ff] to-[#7d1ef9] text-white shadow-lg shadow-[#9747ff]/30"
                   : "text-gray-500 hover:bg-[#f5f0ff] hover:text-[#9747ff]"
                 }`}
             >
@@ -57,7 +57,7 @@ const Layout = ({ currentView, setView, children }) => {
         {/* User info + logout */}
         <div className="px-4 py-5 border-t border-gray-100">
           <div className="flex items-center gap-3 mb-3 px-2">
-            <div className="w-9 h-9 rounded-full bg-gradient-to-br from-[#9747ff] to-[#7d1ef9] flex items-center justify-center text-white text-sm font-bold">
+            <div className="w-9 h-9 rounded-full bg-linear-to-br from-[#9747ff] to-[#7d1ef9] flex items-center justify-center text-white text-sm font-bold">
               {user?.email?.[0]?.toUpperCase()}
             </div>
             <div className="overflow-hidden">
