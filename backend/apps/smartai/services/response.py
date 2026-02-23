@@ -20,16 +20,15 @@ def ai_response(serializer, user):
 
     # Build context from report fields
     report_context = f"""
-Bodyweight: {report.body_weight} kg
-Haemoglobin: {report.haemoglobin}
-Platelets: {report.platelets}
-Blood Pressure: {report.blood_pressure}
-Heartbeat: {report.heartbeat}
-Notes: {report.notes or "No notes"}
-"""
+        Bodyweight: {report.body_weight} kg
+        Haemoglobin: {report.haemoglobin} gm%
+        Platelets: {report.platelets}/cmm
+        Blood Pressure: {report.blood_pressure} mm of Hg
+        Heartbeat: {report.heartbeat} bpm
+        Notes: {report.notes or "No notes"}
+    """
 
     # Generate summary
     summary_text = summarize_report_prompt(report_context)
-
-    # ✅ Wrap the string in a Response
+    
     return Response({"summary": summary_text}, status=200)

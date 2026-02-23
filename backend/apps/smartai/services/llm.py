@@ -9,12 +9,9 @@ google_model_name = os.getenv('GOOGLE_MODEL_NAME')
 google_model_provider = os.getenv('GOOGLE_MODEL_PROVIDER')
 
 def google_llm(prompt: str) -> str:
-    """
-    Calls the Google LLM and returns plain text output.
-    """
     model = init_chat_model(
         api_key=google_api_key,
         model=google_model_name,
         model_provider=google_model_provider
     )
-    return model.invoke(prompt).content  # just the text
+    return model.invoke(prompt).content
